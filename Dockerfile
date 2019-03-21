@@ -1,4 +1,4 @@
-FROM ruby:2.6-alpine
+FROM ruby:2.6.2-alpine
 
 RUN apk update && apk add build-base nodejs postgresql-dev tzdata less
 
@@ -16,3 +16,5 @@ ADD Gemfile.lock $INSTALL_PATH/Gemfile.lock
 RUN cd $INSTALL_PATH && bundle install
 
 COPY . .
+
+RUN cd $INSTALL_PATH && rake assets:precompile
