@@ -19,8 +19,8 @@
     - if problem_set.solutions.count.zero?
       p No Solution Submitted Yet!
     - else
-      - problem_set.solutions.order(created_at: :desc).each do |solution|
+      - problem_set.solutions.order(score: :desc).each do |solution|
           - if solution.error
-            p #{solution.user.name} => #{solution.score} points. #{solution.error}
+            p |#{solution.created_at}| #{solution.user.name} => #{solution.score} points. #{solution.error}
           - else
-            p #{solution.user.name} => #{solution.score} points.
+            p |#{solution.created_at}| #{solution.user.name} => #{solution.score} points.
