@@ -7,7 +7,7 @@ class Scorer
         next
       else
         parts = line.split(' ')
-        photos[index] = {orientation: parts[0], tags: parts[2..-1]}
+        photos[index - 1] = {orientation: parts[0], tags: parts[2..-1]}
       end
     end
 
