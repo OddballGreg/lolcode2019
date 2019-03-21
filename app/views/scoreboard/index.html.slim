@@ -20,4 +20,7 @@
       p No Solution Submitted Yet!
     - else
       - problem_set.solutions.each do |solution|
-          p #{solution.user.name} => #{solution.score} points
+          - if solution.error
+            p #{solution.user.name} => #{solution.score} points. #{solution.error}
+          - else
+            p #{solution.user.name} => #{solution.score} points.
