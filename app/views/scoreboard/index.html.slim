@@ -2,8 +2,9 @@
   h1 Solutions:
 .panel-body.text-center
   .col-sm-6
-    - if (DateTime.parse('2019/03/21 17:00:00').utc - Time.now).positive?
-      span.btn.btn-default.disabled Hackathon ends in #{distance_of_time_in_words((DateTime.parse('2019/03/21 17:00:00').utc) - Time.now)}...
+    - endtime = DateTime.parse('2019/03/21 17:00:00').utc
+    - if ( endtime - Time.now).positive?
+      span.btn.btn-default.disabled Hackathon ends in #{distance_of_time_in_words(endtime - Time.now)}...
     - else
       span.btn.btn-failure.disabled Hackathon is over... :) 
   .col-sm-6
@@ -14,7 +15,8 @@
     h2
       b
         u #{problem_set.name}:
-    = link_to "Upload New Solution", new_problem_set_solution_path(problem_set_id: problem_set), class: 'btn btn-xs btn-success'
+    - if ( endtime - Time.now).positive?
+      = link_to "Upload New Solution", new_problem_set_solution_path(problem_set_id: problem_set), class: 'btn btn-xs btn-success'
 
     br
     br
