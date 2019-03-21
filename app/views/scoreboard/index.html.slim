@@ -2,7 +2,10 @@
   h1 Solutions:
 .panel-body.text-center
   .col-sm-6
-    span.btn.btn-default.disabled Hackathon ends in #{distance_of_time_in_words((DateTime.parse('2019/03/21 19:00:00').utc + 2.hours) - Time.now)}...
+    - if (DateTime.parse('2019/03/21 19:00:00').utc) - Time.now).positive?
+      span.btn.btn-default.disabled Hackathon ends in #{distance_of_time_in_words((DateTime.parse('2019/03/21 19:00:00').utc) - Time.now)}...
+    - else
+      span.btn.btn-failure.disabled Hackathon is over... :) 
   .col-sm-6
     = link_to "View Problem Sets", problem_sets_path, class: 'btn btn-info'
   br
