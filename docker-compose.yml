@@ -2,7 +2,7 @@ version: '2'
 
 services:
   web:
-    image: fsn:latest
+    image: lolcode:latest
     links:
       - 'postgres'
       - 'redis'
@@ -11,13 +11,13 @@ services:
     command: "bundle exec rails server -b '0.0.0.0'"
     env_file: .env
 
-  sidekiq:
-    image: fsn:latest
-    links:
-      - 'postgres'
-      - 'redis'
-    command: 'sidekiq -C config/sidekiq.yml'
-    env_file: .env
+  # sidekiq:
+  #   image: lolcode:latest
+  #   links:
+  #     - 'postgres'
+  #     - 'redis'
+  #   command: 'sidekiq -C config/sidekiq.yml'
+  #   env_file: .env
 
   postgres:
     image: 'postgres'
