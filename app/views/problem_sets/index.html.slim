@@ -1,0 +1,18 @@
+.panel-heading.text-center
+  h1 Problem Sets
+.panel-body
+  - if current_user.admin
+    = link_to 'Add New Problem', new_problem_set_path, class: 'btn btn-success pull-right'
+    br
+  - @problem_sets.each do |ps|
+    h2
+      u 
+        b = ps.name
+    br
+    span Number of solutions: #{ps.solutions.count}
+    br
+    span Highest Solution Score: #{ps.solutions.order(score: :asc).first&.score}
+    br
+    span Highest Solution Score Creator: #{ps.solutions.order(score: :asc).first&.user&.name}
+    br
+    = link_to "Download Problem Set", rails_blob_path(ps.file, disposition: "attachment"), class: 'btn btn-xs btn-success'

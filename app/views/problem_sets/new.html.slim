@@ -1,0 +1,7 @@
+h1 Upload new problem set
+
+= form_for @problem_set, url: problem_sets_path do |f|
+  span Attach problem: <br>
+  = f.file_field :file
+  br
+  = f.submit

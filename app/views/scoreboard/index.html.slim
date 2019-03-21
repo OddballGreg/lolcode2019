@@ -1,0 +1,16 @@
+.panel-heading.text-center
+  h1 Solutions:
+.panel-body.text-center
+  = link_to "View Problem Sets", problem_sets_path, class: 'btn btn-info pull-right'
+  br
+  - ProblemSet.all.each do |problem_set|
+    h2
+      b
+        u #{problem_set.name}:
+    = link_to "Upload New Solution", new_problem_set_solution_path(problem_set_id: problem_set), class: 'btn btn-xs btn-success'
+
+    - if problem_set.solutions.count.zero?
+      p No Solution Submitted Yet!
+    - else
+      - problem_set.solutions.each do |solution|
+          p #{solution.user.name} => #{solution.score} points

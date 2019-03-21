@@ -1,0 +1,15 @@
+- if !alert.nil?
+  .wrapper
+    .container
+      .col-lg-12
+        .alert.alert-dismissible.alert-danger.text-center
+          button type="button" class="close" data-dismiss="alert" &times;
+          p.alert = alert
+
+- if !notice.nil?
+  .wrapper
+    .container
+      .col-lg-12
+        .alert.alert-dismissible.alert-success.text-center
+          button type="button" class="close" data-dismiss="alert" &times;
+          p.notice = notice
