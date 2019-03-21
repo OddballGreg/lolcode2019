@@ -10,6 +10,8 @@ services:
       - '3000'
     command: "bundle exec rails server -b '0.0.0.0'"
     env_file: .env
+    volumes:
+      - 'storage:/app/lolcode/storage'
 
   # sidekiq:
   #   image: lolcode:latest
@@ -47,5 +49,6 @@ services:
       - 'redis:/data'
 
 volumes:
+  storage:
   redis:
   postgres:
