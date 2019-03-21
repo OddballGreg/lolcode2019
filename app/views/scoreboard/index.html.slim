@@ -16,11 +16,26 @@
         u #{problem_set.name}:
     = link_to "Upload New Solution", new_problem_set_solution_path(problem_set_id: problem_set), class: 'btn btn-xs btn-success'
 
-    - if problem_set.solutions.count.zero?
-      p No Solution Submitted Yet!
-    - else
-      - problem_set.solutions.order(score: :desc).each do |solution|
-          - if solution.error
-            p |#{solution.created_at}| #{solution.user.name} => #{solution.score} points. #{solution.error}
-          - else
-            p |#{solution.created_at}| #{solution.user.name} => #{solution.score} points.
+    br
+    br
+    table.table.table-hover.table-responsive.table-bordered
+      tr
+        td Submitted At
+        td User
+        td Points
+        td Error (If Any)
+      - if problem_set.solutions.count.zero?
+        p No Solution Submitted Yet!
+      - else
+          - problem_set.solutions.order(score: :desc).each do |solution|
+            tr
+              - if solution.error
+                td #{solution.created_at}
+                td #{solution.user.name}
+                td #{solution.score} points. 
+                td #{solution.error}
+              - else
+                td #{solution.created_at}
+                td #{solution.user.name}
+                td #{solution.score} points.
+                td
