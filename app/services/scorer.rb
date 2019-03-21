@@ -23,7 +23,7 @@ class Scorer
         slide_photos = line.split(' ').map(&:to_i)
         return "Used photo that does not exist in problem set on line #{index}"  if slide_photos.any? {|photo_id| photos[photo_id].nil?}
         return "Used a vertical photo by itself on line #{index}"  if slide_photos.size == 1 && slide_photos.any?{|photo_id| photos[photo_id][:orientation] == 'V'}
-        return "Used more than photo on a slide containing a horizontal photo on line #{index}"  if slide_photos.size > 1 && slide_photos.any?{|photo_id| photos[photo_id][:orientation] == 'H'}
+        return "Used more than 1 photo on a slide containing a horizontal photo on line #{index}"  if slide_photos.size > 1 && slide_photos.any?{|photo_id| photos[photo_id][:orientation] == 'H'}
         return "Used more than 2 photos on slide on line #{index}"  if slide_photos.size > 2
         
         slide_photos.each do |photo_id|
