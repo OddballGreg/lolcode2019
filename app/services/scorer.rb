@@ -19,15 +19,15 @@ class Scorer
       if index.zero?
         user_line_count = line.to_i
       else
-        return -42  if index > user_line_count
+        return "User more lines than declared on line 1"  if index > user_line_count
         slide_photos = line.split(' ').map(&:to_i)
-        return -42  if slide_photos.any? {|photo_id| photos[photo_id].nil?}
-        return -42  if slide_photos.size == 1 && slide_photos.any?{|photo_id| photos[photo_id][:orientation] == 'V'}
-        return -42  if slide_photos.size > 1 && slide_photos.any?{|photo_id| photos[photo_id][:orientation] == 'H'}
-        return -42  if slide_photos.size > 2
+        return "Used photo that does not exist in problem set on line #{index}"  if slide_photos.any? {|photo_id| photos[photo_id].nil?}
+        return "Used a vertical photo by itself on line #{index}"  if slide_photos.size == 1 && slide_photos.any?{|photo_id| photos[photo_id][:orientation] == 'V'}
+        return "Used more than photo on a slide containing a horizontal photo on line #{index}"  if slide_photos.size > 1 && slide_photos.any?{|photo_id| photos[photo_id][:orientation] == 'H'}
+        return "Used more than 2 photos on slide on line #{index}"  if slide_photos.size > 2
         
         slide_photos.each do |photo_id|
-          return -42  if photos[photo_id][:used] 
+          return "Resued photo on line #{index}" if photos[photo_id][:used] 
           photos[photo_id][:used] = true
         end
 
@@ -38,7 +38,7 @@ class Scorer
       last_index = index
     end
 
-    return -42 if last_index != user_line_count
+    return "Did not use as many photos as delcated on line 1" if last_index != user_line_count
 
     score
   end

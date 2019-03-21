@@ -8,7 +8,13 @@ class Solution < ApplicationRecord
 
   private
   def save_score
-    self.score = Scorer.test(problem_set.file.download, file.download)
+    result = Scorer.test(problem_set.file.download, file.download)
+    if result.class == Integer
+      self.score = result 
+    else
+      self.score = -42
+      self.error = result
+    end
     self.save
   end
 end
