@@ -1,7 +1,11 @@
 .panel-heading.text-center
   h1 Solutions:
 .panel-body.text-center
-  = link_to "View Problem Sets", problem_sets_path, class: 'btn btn-info pull-right'
+  .col-sm-6
+    span.btn.btn-default.disabled Hackathon ends in #{distance_of_time_in_words((DateTime.parse('2019/03/21 19:00:00').utc + 2.hours) - Time.now)}...
+  .col-sm-6
+    = link_to "View Problem Sets", problem_sets_path, class: 'btn btn-info'
+  br
   br
   - ProblemSet.all.each do |problem_set|
     h2
