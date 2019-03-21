@@ -11,6 +11,7 @@ class SolutionsController < ApplicationController
   def create
     @solution = Solution.new(user: current_user, problem_set: @problem_set)
     @solution.file.attach(params[:solution][:file])
+    @solution.file.attach(params[:solution][:program])
     if @solution.save
       redirect_to scoreboard_index_path
     else

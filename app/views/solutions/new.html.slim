@@ -6,11 +6,12 @@
     .col-sm-4
       .panel-default
           = form_for @solution, url: problem_set_solutions_path do |f|
-            .panel-heading
-              h5 
-                u Attach solution:
-            .panel-body
-              = f.file_field :file
-              br
-              = f.submit
+            h4 
+              u Attach solution:
+            p Attach your solution:
+            = f.file_field :file
+            p Attach your program:
+            = f.file_field :program
+            br
+            = f.submit
     .col-sm-4

@@ -2,6 +2,7 @@ class Solution < ApplicationRecord
   belongs_to :problem_set
   belongs_to :user
   has_one_attached :file
+  has_one_attached :program
 
   after_create :save_score
 
